@@ -1,0 +1,38 @@
+/* ==========================================================================
+   Print: a clean sheet of contact details, no interface chrome.
+   - Default: prints the current results list.
+   - body.print-detail: prints only the open resource detail.
+   ========================================================================== */
+@media print {
+  @page { margin: 14mm; }
+  :root { --paper: #fff; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  a { color: #000; text-decoration: none; }
+
+  .urgent-bar, .site-header, .hero, .toolbar, .active-filters, .map-panel, .card__actions,
+  #coverage, #before, .urgent, .site-footer, .toast, .skip-link, .icon-btn, .detail__actions, .detail__tools,
+  .location__actions, .drawer__bar, .guide, .view-switch { display: none !important; }
+
+  .finder { border: 0; padding-top: 0; }
+  .finder__body { display: block !important; padding: 0; }
+  .finder__body .results { display: block !important; }
+  .finder__head::before { content: 'RVA Health Connect — free and low-cost care in Richmond, VA'; display: block; font-size: 10pt; margin-bottom: 4pt; }
+  .print-only { display: grid !important; }
+  .finder__head { display: block; }
+  .finder__head h2 { font-size: 18pt; }
+  .results__list { display: block; }
+  .card { display: block; break-inside: avoid; border: 1px solid #999; padding: 8pt 10pt; margin-bottom: 8pt; }
+  .card > * + * { margin-top: 4pt; }
+  .card__alert { background: #fff; border-color: #999; }
+  .card::before { display: none; }
+  .card__foot { border-top-color: #ccc; }
+  .badge--free { background: #fff; color: #000; border: 1px solid #000; }
+
+  /* Print a single listing */
+  body.print-detail > *:not(.drawer) { display: none !important; }
+  body.print-detail .drawer { position: static; display: block !important; width: auto; height: auto; box-shadow: none; animation: none; }
+  body.print-detail .drawer::backdrop { display: none; }
+  body.print-detail .drawer__body { overflow: visible; padding: 0; }
+  body.print-detail .drawer__spine { display: none; }
+  body.print-detail .location { break-inside: avoid; }
+}
